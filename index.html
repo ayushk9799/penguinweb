@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff3f8">
+  <meta name="description" content="Penguin is a playful couples app for mood check-ins, daily questions, cozy games, and tiny moments that keep love feeling alive.">
+  <title>Penguin - Connecting Couples</title>
+  <style>
+    @font-face {
+      font-family: "Nunito";
+      src: url("assets/fonts/Nunito-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Nunito";
+      src: url("assets/fonts/Nunito-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Nunito";
+      src: url("assets/fonts/Nunito-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Nunito";
+      src: url("assets/fonts/Nunito-ExtraBold.ttf") format("truetype");
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --ink: #171421;
+      --deep: #15131e;
+      --muted: #5a566c;
+      --soft: #fff4f8;
+      --pink: #ff4f91;
+      --coral: #ff7564;
+      --mint: #44c8b6;
+      --line: rgba(255, 79, 145, 0.18);
+      --white: #ffffff;
+      --shadow: 0 30px 80px rgba(49, 30, 58, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fff7fb;
+      font-family: "Nunito", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.35;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+        radial-gradient(circle at 88% 14%, rgba(202, 245, 240, 0.8), transparent 18%),
+        radial-gradient(circle at 0% 0%, rgba(255, 208, 225, 0.9), transparent 26%),
+        linear-gradient(110deg, #fff0f6 0%, #fff8fb 54%, #eefcfb 100%);
+      background-size: 28px 28px, 28px 28px, auto, auto, auto;
+    }
+
+    .container {
+      width: min(1220px, calc(100% - 56px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: relative;
+      z-index: 20;
+      padding: 24px 0 10px;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand img {
+      width: 158px;
+      height: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      color: #504b5e;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .nav-links a {
+      padding: 8px 0;
+    }
+
+    .download-pill {
+      min-width: 138px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      color: #ffffff;
+      text-align: center;
+      background: var(--deep);
+      box-shadow: 0 18px 34px rgba(21, 19, 30, 0.18);
+    }
+
+    .hero {
+      position: relative;
+      padding: 48px 0 18px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(460px, 1fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 4;
+      max-width: 620px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      padding: 7px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #e63583;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 14px 40px rgba(255, 79, 145, 0.12);
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.75);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 560px;
+      margin-bottom: 18px;
+      color: var(--ink);
+      font-size: clamp(3.8rem, 6.4vw, 5.55rem);
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .accent {
+      color: var(--pink);
+    }
+
+    .hero-text {
+      max-width: 520px;
+      margin-bottom: 24px;
+      color: var(--muted);
+      font-size: 1.34rem;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 142px));
+      gap: 14px;
+    }
+
+    .stat {
+      min-height: 78px;
+      padding: 13px 17px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 18px 42px rgba(255, 79, 145, 0.08);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.78rem;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 500px;
+    }
+
+    .phone-card {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: min(360px, 70%);
+      height: 455px;
+      border-radius: 38px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: var(--shadow);
+      transform: rotate(6deg);
+    }
+
+    .phone {
+      position: absolute;
+      right: 48px;
+      top: 46px;
+      z-index: 2;
+      width: min(250px, 50%);
+      filter: drop-shadow(0 28px 26px rgba(72, 42, 96, 0.16));
+      transform: rotate(6deg);
+    }
+
+    .mascot {
+      position: absolute;
+      right: 112px;
+      bottom: 18px;
+      z-index: 4;
+      width: min(275px, 52%);
+      filter: drop-shadow(0 24px 28px rgba(61, 30, 83, 0.16));
+      animation: floatMascot 6s ease-in-out infinite;
+    }
+
+    .float-card {
+      position: absolute;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 184px;
+      padding: 13px 16px;
+      border: 1px solid rgba(255, 79, 145, 0.16);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 22px 54px rgba(91, 53, 87, 0.12);
+      backdrop-filter: blur(16px);
+    }
+
+    .float-card img {
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .float-card strong {
+      display: block;
+      color: #272235;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .float-card span {
+      display: block;
+      margin-top: 4px;
+      color: #746f82;
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    .mood-card {
+      left: 24px;
+      top: 50px;
+    }
+
+    .deep-card {
+      right: 0;
+      bottom: 60px;
+    }
+
+    .play-card {
+      left: 132px;
+      bottom: 0;
+    }
+
+    .asset-bubble {
+      position: absolute;
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      width: 86px;
+      height: 86px;
+      border: 1px solid rgba(255, 79, 145, 0.13);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.66);
+      box-shadow: 0 18px 42px rgba(91, 53, 87, 0.11);
+      backdrop-filter: blur(14px);
+    }
+
+    .asset-bubble img {
+      width: 76px;
+      height: 76px;
+      object-fit: contain;
+    }
+
+    .asset-bubble.wordle {
+      left: 20px;
+      bottom: 148px;
+      transform: rotate(-8deg);
+    }
+
+    .asset-bubble.question {
+      right: 26px;
+      top: 142px;
+      transform: rotate(7deg);
+    }
+
+    .asset-bubble.games {
+      right: 78px;
+      bottom: 170px;
+      transform: rotate(5deg);
+    }
+
+    .heart {
+      position: absolute;
+      z-index: 3;
+      color: var(--pink);
+      font-size: 3.35rem;
+      line-height: 1;
+      filter: drop-shadow(0 18px 18px rgba(255, 79, 145, 0.18));
+    }
+
+    .heart.one {
+      right: 100px;
+      top: 0;
+      transform: rotate(-8deg);
+    }
+
+    .heart.two {
+      left: 120px;
+      top: 232px;
+      font-size: 2.35rem;
+      opacity: 0.85;
+    }
+
+    .spark {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      color: var(--mint);
+      z-index: 3;
+    }
+
+    .spark::before,
+    .spark::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      background: currentColor;
+      border-radius: 999px;
+    }
+
+    .spark::before {
+      width: 7px;
+      height: 24px;
+    }
+
+    .spark::after {
+      width: 24px;
+      height: 7px;
+    }
+
+    .spark.one {
+      left: 102px;
+      top: 160px;
+    }
+
+    .scribble-mini {
+      position: absolute;
+      left: 112px;
+      bottom: 72px;
+      z-index: 2;
+      width: 72px;
+      opacity: 0.46;
+      transform: rotate(-14deg);
+    }
+
+    .feature-band {
+      position: relative;
+      margin-top: 0;
+      padding: 46px 0 42px;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(255, 79, 145, 0.18), transparent 24%),
+        radial-gradient(circle at 80% 14%, rgba(68, 200, 182, 0.2), transparent 23%),
+        #15131e;
+      border-radius: 52px 52px 0 0;
+      box-shadow: 0 -24px 70px rgba(21, 19, 30, 0.16);
+    }
+
+    .band-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.74fr);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .band-head h2 {
+      max-width: 590px;
+      margin-bottom: 0;
+      color: #ffffff;
+      font-size: clamp(2.5rem, 4vw, 3.75rem);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .band-head p {
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature-card {
+      position: relative;
+      min-height: 118px;
+      padding: 22px 118px 22px 22px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 8px;
+      color: #ffffff;
+      font-size: 1.22rem;
+      font-weight: 800;
+    }
+
+    .feature-card p {
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.98rem;
+      font-weight: 800;
+    }
+
+    .feature-card img {
+      position: absolute;
+      right: 14px;
+      bottom: 8px;
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+    }
+
+    .feature-card .wide-art {
+      right: -4px;
+      bottom: 0;
+      width: 124px;
+      height: 98px;
+    }
+
+    .download {
+      padding: 68px 0 58px;
+      text-align: center;
+      background: #fff7fb;
+    }
+
+    .download h2 {
+      margin-bottom: 12px;
+      color: var(--ink);
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.04;
+      font-weight: 800;
+    }
+
+    .download p {
+      max-width: 650px;
+      margin: 0 auto 26px;
+      color: var(--muted);
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .store-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .store-link {
+      display: block;
+      width: 178px;
+      transition: transform 180ms ease, filter 180ms ease;
+    }
+
+    .store-link:hover {
+      transform: translateY(-3px);
+      filter: saturate(1.08);
+    }
+
+    .footer {
+      padding: 24px 0 34px;
+      color: var(--muted);
+      background: #fff7fb;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    @keyframes floatMascot {
+      0%,
+      100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+      50% {
+        transform: translateY(-12px) rotate(1deg);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .container {
+        width: min(100% - 32px, 760px);
+      }
+
+      .nav {
+        padding-top: 18px;
+      }
+
+      .nav-links a:not(.download-pill) {
+        display: none;
+      }
+
+      .brand img {
+        width: 150px;
+      }
+
+      .hero {
+        padding-top: 30px;
+      }
+
+      .hero-grid,
+      .band-head {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        min-height: 500px;
+      }
+
+      .phone-card {
+        right: 5%;
+        width: min(350px, 72%);
+        height: 440px;
+      }
+
+      .phone {
+        right: 12%;
+      }
+
+      .mascot {
+        right: 24%;
+      }
+
+      .mood-card {
+        left: 0;
+      }
+
+      .deep-card {
+        right: 0;
+      }
+
+      .play-card {
+        left: 12%;
+      }
+
+      .asset-bubble.wordle {
+        left: 4%;
+      }
+
+      .asset-bubble.question {
+        right: 4%;
+      }
+
+      .asset-bubble.games {
+        right: 12%;
+      }
+
+      .feature-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 24px, 560px);
+      }
+
+      .nav-inner {
+        gap: 14px;
+      }
+
+      .brand img {
+        width: 132px;
+      }
+
+      .download-pill {
+        min-width: auto;
+        padding: 12px 17px;
+      }
+
+      .hero {
+        padding-top: 22px;
+      }
+
+      h1 {
+        font-size: clamp(2.9rem, 14vw, 3.85rem);
+      }
+
+      .hero-text {
+        font-size: 1.08rem;
+        margin-bottom: 20px;
+      }
+
+      .hero-actions {
+        margin-bottom: 22px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        min-height: 420px;
+      }
+
+      .phone-card {
+        right: -8%;
+        width: 82%;
+        height: 370px;
+        border-radius: 34px;
+      }
+
+      .phone {
+        right: 7%;
+        top: 44px;
+        width: 48%;
+      }
+
+      .mascot {
+        right: 22%;
+        bottom: 10px;
+        width: 54%;
+      }
+
+      .float-card {
+        min-width: 162px;
+        padding: 12px 14px;
+      }
+
+      .float-card img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .float-card span {
+        display: none;
+      }
+
+      .mood-card {
+        top: 44px;
+      }
+
+      .deep-card {
+        bottom: 62px;
+      }
+
+      .play-card {
+        left: 0;
+        bottom: 0;
+      }
+
+      .heart.one {
+        right: 24px;
+      }
+
+      .heart.two,
+      .spark,
+      .scribble-mini {
+        display: none;
+      }
+
+      .asset-bubble {
+        width: 64px;
+        height: 64px;
+        border-radius: 20px;
+      }
+
+      .asset-bubble img {
+        width: 58px;
+        height: 58px;
+      }
+
+      .asset-bubble.wordle {
+        left: 0;
+        bottom: 124px;
+      }
+
+      .asset-bubble.question {
+        right: 0;
+        top: 112px;
+      }
+
+      .asset-bubble.games {
+        display: none;
+      }
+
+      .feature-band {
+        border-radius: 34px 34px 0 0;
+        padding-top: 34px;
+      }
+
+      .feature-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card {
+        min-height: 112px;
+      }
+
+      .store-link {
+        width: 154px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 1ms !important;
+        transition-duration: 1ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="nav" aria-label="Primary navigation">
+      <div class="container nav-inner">
+        <a class="brand" href="#top" aria-label="Penguin home">
+          <img src="assets/penguin-text-logo.png" alt="Penguin">
+        </a>
+        <div class="nav-links">
+          <a href="#daily">Daily</a>
+          <a href="#moods">Moods</a>
+          <a href="#games">Games</a>
+          <a class="download-pill" href="#download">Download</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Private space for two</p>
+          <h1>Feel closer every <span class="accent">day.</span></h1>
+          <p class="hero-text">Penguin gives couples a playful home for mood check-ins, daily questions, cozy games, and tiny moments that keep love feeling alive.</p>
+          <div class="hero-actions">
+            <a class="store-link" href="https://apps.apple.com/us/app/penguin-connecting-couples/id6758950544" aria-label="Download Penguin on the App Store">
+              <img src="appstore.png" alt="Download on the App Store">
+            </a>
+            <a class="store-link" href="https://play.google.com/store/apps/details?id=com.thousandways.love" aria-label="Get Penguin on Google Play">
+              <img src="playstore.png" alt="Get it on Google Play">
+            </a>
+          </div>
+          <div class="stats" aria-label="Penguin highlights">
+            <div class="stat"><strong>2 min</strong><span>daily rituals</span></div>
+            <div class="stat"><strong>10+</strong><span>mood vibes</span></div>
+            <div class="stat"><strong>4</strong><span>couple games</span></div>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-label="Penguin app preview">
+          <div class="phone-card"></div>
+          <img class="phone" src="assets/onboardin3-iphone.png" alt="Penguin app on iPhone">
+          <img class="mascot" src="assets/premium-muscot.png" alt="Penguin mascot with heart">
+          <div class="heart one">♥</div>
+          <div class="heart two">♥</div>
+          <div class="spark one"></div>
+          <img class="scribble-mini" src="assets/scribble.png" alt="">
+          <div class="asset-bubble wordle">
+            <img src="assets/wordle.png" alt="Wordle couple game">
+          </div>
+          <div class="asset-bubble question">
+            <img src="assets/questions.png" alt="Daily questions">
+          </div>
+          <div class="asset-bubble games">
+            <img src="assets/games.png" alt="Couple games">
+          </div>
+
+          <div class="float-card mood-card">
+            <img src="assets/moodsemoji-excited.png" alt="">
+            <div><strong>Mood sync</strong><span>see how they feel</span></div>
+          </div>
+          <div class="float-card deep-card">
+            <img src="assets/deeptalk.png" alt="">
+            <div><strong>Deep talks</strong><span>questions every day</span></div>
+          </div>
+          <div class="float-card play-card">
+            <img src="assets/wordle.png" alt="">
+            <div><strong>Play together</strong><span>quick cozy games</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-band" id="daily">
+      <div class="container">
+        <div class="band-head">
+          <h2>Built for the little things couples actually do.</h2>
+          <p>A calm, cute landing page direction using Penguin’s mascot language, pink heart energy, and app-native feature art.</p>
+        </div>
+
+        <div class="feature-cards">
+          <article class="feature-card">
+            <h3>Daily cards</h3>
+            <p>voice notes, questions, rates, and prompts.</p>
+            <img src="assets/voice.png" alt="Voice prompt card">
+          </article>
+          <article class="feature-card" id="moods">
+            <h3>Home widget</h3>
+            <p>send a tiny “thinking of you” note.</p>
+            <img class="wide-art" src="assets/scribble.png" alt="Penguin scribble note">
+          </article>
+          <article class="feature-card">
+            <h3>Couple topics</h3>
+            <p>travel, future, family, and lifestyle.</p>
+            <img src="assets/together-heart-plant.png" alt="Couple topic icon">
+          </article>
+          <article class="feature-card" id="games">
+            <h3>Mini games</h3>
+            <p>word puzzles and classic games for two.</p>
+            <img src="assets/puzzle.png" alt="Penguin puzzle game">
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="download" id="download">
+      <div class="container">
+        <h2>Start your Penguin space.</h2>
+        <p>Download Penguin on iOS or Android and invite your partner into a private place built for small, happy connection.</p>
+        <div class="store-row" aria-label="Download Penguin">
+          <a class="store-link" href="https://apps.apple.com/us/app/penguin-connecting-couples/id6758950544" aria-label="Download Penguin on the App Store">
+            <img src="appstore.png" alt="Download on the App Store">
+          </a>
+          <a class="store-link" href="https://play.google.com/store/apps/details?id=com.thousandways.love" aria-label="Get Penguin on Google Play">
+            <img src="playstore.png" alt="Get it on Google Play">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">Penguin - Connecting Couples</div>
+    </footer>
+  </main>
+</body>
+</html>
